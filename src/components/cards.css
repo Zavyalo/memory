@@ -10,12 +10,14 @@
     cursor: pointer;
     transition: transform 0.5s;
     transform-style: preserve-3d;
-}
-.card-check {
+    
     transform: rotateY(180deg);
 }
-.card::after {
-    content: attr(data-back);
+.card-check {
+    transform: rotateY(0);
+}
+.cards::after {
+    content: "";
     position: absolute;
     inset: 0;
     display: flex;
@@ -25,7 +27,9 @@
     border-radius: 10px;
     transform: rotateY(180deg);
     backface-visibility: hidden;
+
 }
 .cards img {
     border-radius: 5%;
+    backface-visibility: hidden;
 }

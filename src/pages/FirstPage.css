@@ -1,0 +1,20 @@
+.isActive {
+    margin: 30px;
+}
+.link {
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: 0.3s all;
+    background-color: lightskyblue;
+    border-radius: 5px;
+}
+.link:hover {
+    color: blue;
+    background-color: cornflowerblue;
+}
+.link--active {
+    font-weight: bold;
+    background-color: dodgerblue;
+}
