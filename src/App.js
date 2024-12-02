@@ -9,7 +9,6 @@ function App() {
         <Routes>
           <Route path="/" element={<PageFirst/>} />
           <Route path="/play" element={<PageGame/>} />
-        
         </Routes>
       </BrowserRouter>
   );

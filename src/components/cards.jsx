@@ -1,17 +1,19 @@
 import './cards.css';
-import { useState } from "react";
 
 
-export function Cards ({url, back}) {
-    const [checkCards, setCheckCards] = useState(false);      
+export  function Cards({ id,url, isVisible, isFinished, onCardsClick }) { 
+  
+    
     const handleClick = () => {
-        setCheckCards(!checkCards);
-    }
-    let className = `cards ${checkCards ? 'card-check' : ''}`;
-
-    return(
-        <div className= {className} onClick={handleClick} data-back={<img src={back} alt="" />}>
-            <img src={url} alt="" />
-        </div>
+        onCardsClick(id);
+    };
+    const classCard = `card
+    ${isVisible ?  "card-show" : ""}
+    ${isFinished ?  "card-finished" : ""} `;
+    return (
+        <li className={classCard} onClick={handleClick}> 
+            <img src={url} width="204" height="144" alt="" />
+        </li>
     );
 }
+    

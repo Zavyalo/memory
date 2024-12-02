@@ -1,49 +1,51 @@
 import './grid.css';
 import { Cards } from "../components/cards"
-import { images } from "./../data.js";
+import React from "react";
 
-export function Grid(){
-    return(
-        <div className="container">
-        {
-        images.map((item)=>(
-            <Cards
-                key = {item.id}   
-                url = {item.url}
-                back = {item.back}
-            ></Cards>
-        ))
+
+
+export  function Grid ({ images, finishedItems, checkItems }) {
+    const [visibleItems, setVisibleItems] = React.useState([]);
+    const handleCardsClick = (id) => {
+        if (finishedItems.includes(id) || visibleItems.includes(id)) {
+            return;
         }
-            <Cards
-            key = {images[0].id}   
-            url = {images[0].url}
-            back = {images[0].back}
-            ></Cards>
-            <Cards
-            key = {images[2].id}   
-            url = {images[2].url}
-            back = {images[0].back}
-            ></Cards>
-            <Cards
-            key = {images[3].id}   
-            url = {images[3].url}
-            back = {images[0].back}
-            ></Cards>
-            <Cards
-            key = {images[4].id}   
-            url = {images[4].url}
-            back = {images[0].back}
-            ></Cards>
-            <Cards
-            key = {images[5].id}   
-            url = {images[5].url}
-            back = {images[0].back}
-            ></Cards>
-            <Cards
-            key = {images[1].id}   
-            url = {images[1].url}
-            back = {images[0].back}
-            ></Cards>
-        </div>
-    )
+        switch (visibleItems.length) {
+            case 0:
+                setVisibleItems([id]);
+                break;
+            case 1:
+                setVisibleItems((items) => [...items, id]);
+                checkItems(visibleItems[0], id);
+                setTimeout(() => {
+                    setVisibleItems([]);
+                }, 1000);
+                break;
+            default:
+                setVisibleItems([]);
+        }
+    };
+
+    return (
+        <ul className="cards">
+        {images.map((item) => (
+        <Cards
+            key={item.id}
+            id={item.id}
+            url={item.url}
+            isVisible={visibleItems.includes(item.id)} 
+            isFinished={finishedItems.includes(item.id)} 
+            onCardClick={handleCardsClick}
+        />
+        ))} 
+        </ul>
+    );
 }
+
+
+
+
+
+
+
+    
